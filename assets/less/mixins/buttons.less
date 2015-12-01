@@ -1,0 +1,66 @@
+.darken-background(@color; @percent; @accent) when (@color = transparent) {
+    background-color: fade(darken(@accent, @percent), @percent);
+}
+
+.darken-background(@color; @percent; @accent) when (default()) {
+    background-color: darken(@color, @percent);
+}
+
+.btn-variant(@color; @background; @border) {
+    font-family: @font-family-alt;
+    font-weight: 600;
+    color: @color;
+
+    background-color: @background;
+    border-color: @border;
+
+    transition+: background @transition-duration;
+    transition+: box-shadow @transition-duration;
+    transition+: border @transition-duration;
+
+    &:active {
+        box-shadow: none;
+    }
+
+    &:focus, &.focus, &:hover {
+        color: @color;
+        .darken-background(@background; 5%; @border);
+        border-color: darken(@border, 5%);
+    }
+
+    &:active, &.active, .open > .dropdown-toggle& {
+        color: @color;
+        .darken-background(@background; 8%; @border);
+        border-color: darken(@border, 8%);
+
+        &:hover, &:focus, &.focus {
+            color: @color;
+            .darken-background(@background; 10%; @border);
+            border-color: darken(@border, 10%);
+        }
+    }
+
+    &:active, &.active, .open > .dropdown-toggle& {
+        background-image: none;
+    }
+
+    &.disabled, &[disabled], fieldset[disabled] & {
+        &:hover, &:focus, &.focus {
+            background-color: @background;
+            border-color: @border;
+        }
+    }
+
+    .badge {
+        color: @background;
+        background-color: @color;
+    }
+}
+
+.button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius; @border-width) {
+    padding: @padding-vertical - @border-width @padding-horizontal - @border-width;
+    font-size: @font-size;
+    line-height: @line-height;
+    border-radius: @border-radius;
+    border-width: @border-width;
+}
