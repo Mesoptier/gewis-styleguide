@@ -2,7 +2,8 @@ var grunt = require('grunt');
 
 grunt.initConfig({
     clean: {
-        styleguide: ['styleguide']
+        styleguide: ['styleguide'],
+        build: ['build']
     },
     watch: {
         styleguide: {
@@ -13,20 +14,32 @@ grunt.initConfig({
     copy: {
         main: {
             files: [
-                { expand: true, cwd: 'assets/css', src: '**', dest: 'styleguide/public', filter: 'isFile' }
+                { expand: true, cwd: 'build/css', src: '**', dest: 'styleguide/public', filter: 'isFile' },
+                { expand: true, cwd: 'bower_components/bootstrap/fonts', src: '**', dest: 'styleguide/fonts' }
             ]
         }
     },
     less: {
         main: {
             files: {
-                'assets/css/main.css': 'assets/less/main.less'
+                'build/css/main.css': 'assets/less/main.less',
+                'build/css/styleguide.css': 'assets/less/styleguide.less'
             }
         }
     },
     shell: {
         kss: {
-            command: 'kss-node --source assets/less --destination styleguide --template assets/template --css public/main.css --title "GEWIS Styleguide"'
+            command: function () {
+                return 'kss-node ' + [
+                    '--source assets/less',
+                    '--destination styleguide',
+                    '--template assets/template',
+                    // '--css public/main.css',
+                    '--css public/styleguide.css',
+                    '--helpers assets/template/helpers',
+                    '--title "GEWIS Styleguide"'
+                ].join(' ');
+            }
         }
     }
 });

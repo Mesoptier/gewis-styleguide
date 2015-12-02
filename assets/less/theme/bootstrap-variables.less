@@ -1,12 +1,23 @@
-// Brand colors
+/*
+Colors
+
+Markup:
+<span class="styleguide-swatch {{modifier_class}}"></span>
+
+.primary - Primary
+
+Styleguide: colors
+*/
 @brand-primary: #D40026;
 @brand-success: #6BBE1E;
 @brand-warning: #E88C12;
 @brand-danger: #D40026;
 
 // Scaffolding
-@body-bg: #eee;
+@body-bg: #fff;
+@body-inverse-bg: #333;
 @text-color: @gray-dark;
+@text-inverse-color: #fff;
 
 // Links
 @link-color: @brand-primary;
@@ -29,6 +40,10 @@
 @btn-default-color: @text-color;
 @btn-default-bg: #fff;
 @btn-default-border: lighten(@gray, 50%);
+
+@btn-default-inverse-color: #fff;
+@btn-default-inverse-bg: lighten(@body-inverse-bg, 5%);
+@btn-default-inverse-border: lighten(@btn-default-inverse-bg, 5%);
 
 @btn-darker-color: @text-color;
 @btn-darker-bg: lighten(@gray, 60%);

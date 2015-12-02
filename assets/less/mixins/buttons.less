@@ -6,7 +6,11 @@
     background-color: darken(@color, @percent);
 }
 
-.btn-variant(@color; @background; @border) {
+.btn-variant-inverse(@color; @background; @border) {
+    .btn-variant(@color; @background; @border; -1);
+}
+
+.btn-variant(@color; @background; @border; @multiplier: 1) {
     font-family: @font-family-alt;
     font-weight: 600;
     color: @color;
@@ -24,19 +28,19 @@
 
     &:focus, &.focus, &:hover {
         color: @color;
-        .darken-background(@background; 5%; @border);
-        border-color: darken(@border, 5%);
+        .darken-background(@background; 5% * @multiplier; @border);
+        border-color: darken(@border, 5% * @multiplier);
     }
 
     &:active, &.active, .open > .dropdown-toggle& {
         color: @color;
-        .darken-background(@background; 8%; @border);
-        border-color: darken(@border, 8%);
+        .darken-background(@background; 8% * @multiplier; @border);
+        border-color: darken(@border, 8% * @multiplier);
 
         &:hover, &:focus, &.focus {
             color: @color;
-            .darken-background(@background; 10%; @border);
-            border-color: darken(@border, 10%);
+            .darken-background(@background; 10% * @multiplier; @border);
+            border-color: darken(@border, 10% * @multiplier);
         }
     }
 
